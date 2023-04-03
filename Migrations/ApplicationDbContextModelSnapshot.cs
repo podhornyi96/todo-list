@@ -29,12 +29,7 @@ namespace TodoListService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("TodoListItemId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TodoListItemId");
 
                     b.ToTable("TodoLists");
                 });
@@ -54,20 +49,30 @@ namespace TodoListService.Migrations
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("TodoListId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TodoListId");
 
                     b.ToTable("TodoListItems");
                 });
 
-            modelBuilder.Entity("TodoListService.Domain.TodoList", b =>
+            modelBuilder.Entity("TodoListService.Domain.TodoListItem", b =>
                 {
-                    b.HasOne("TodoListService.Domain.TodoListItem", "TodoListItem")
-                        .WithMany()
-                        .HasForeignKey("TodoListItemId")
+                    b.HasOne("TodoListService.Domain.TodoList", "TodoList")
+                        .WithMany("TodoListItems")
+                        .HasForeignKey("TodoListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("TodoListItem");
+                    b.Navigation("TodoList");
+                });
+
+            modelBuilder.Entity("TodoListService.Domain.TodoList", b =>
+                {
+                    b.Navigation("TodoListItems");
                 });
 #pragma warning restore 612, 618
         }
