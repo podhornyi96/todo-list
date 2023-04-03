@@ -19,6 +19,16 @@
 }
 
 .task {
+  .description {
+    text-decoration: line-through;
+    width: 85%;
+
+    .input {
+      width: 100%;
+      border: none;
+      outline: none;
+    }
+  }
   &.done {
     opacity: 0.5;
     position: relative;

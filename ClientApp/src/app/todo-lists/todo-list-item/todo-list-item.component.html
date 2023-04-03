@@ -1,4 +1,6 @@
 <div class="task" [ngClass]="{'done': item.isCompleted}">
-  <div class="description">{{ item.description }} </div>
-  <span class="del">Delete</span>
+  <div class="description">
+    <input class="input" [(ngModel)]="item.description" [readonly]="item.isCompleted"/>
+  </div>
+  <span (click)="deleteItem($event)" class="del">Delete</span>
 </div>

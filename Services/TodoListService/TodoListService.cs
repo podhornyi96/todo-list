@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using TodoListService.Common.Redis;
+using TodoListService.Domain;
 using TodoListService.Models;
 using TodoListService.Persistence;
 
@@ -38,6 +39,33 @@ public class TodoListService : ITodoListService
         await _cache.SetAsync($"{RedisCacheKeys.TodoList}:{id.ToString()}", data);
 
         return result;
+    }
+
+    public async Task<int> AddTodoListItem(CreateTodoListItemDto dto)
+    {
+        var result = _mapper.Map<TodoListItem>(dto);
+
+        await _context.TodoListItems.AddAsync(result);
+
+        await _context.SaveChangesAsync();
+        
+        await _cache.RemoveAsync($"{RedisCacheKeys.TodoList}:{dto.TodoListId.ToString()}");
+
+        return result.Id;
+    }
+
+    public async Task DeleteTodoListItem(int todoListId, int id)
+    {
+        var entity = await _context.TodoListItems.FindAsync(id);
+        
+        if (entity == null)
+            return;
+        
+        _context.TodoListItems.Remove(entity);
+
+        await _context.SaveChangesAsync();
+        
+        await _cache.RemoveAsync($"{RedisCacheKeys.TodoList}:{todoListId}");
     }
     
 }

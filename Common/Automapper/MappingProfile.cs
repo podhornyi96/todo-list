@@ -9,5 +9,6 @@ public class MappingProfile : Profile
     public MappingProfile() {
         CreateMap<TodoList, TodoListDto>();
         CreateMap<TodoListItem, TodoListItemDto>();
+        CreateMap<CreateTodoListItemDto, TodoListItem>();
     }
 }
