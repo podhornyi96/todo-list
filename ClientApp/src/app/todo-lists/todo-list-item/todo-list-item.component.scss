@@ -20,8 +20,8 @@
 
 .task {
   .description {
-    text-decoration: line-through;
     width: 85%;
+    display: flex;
 
     .input {
       width: 100%;

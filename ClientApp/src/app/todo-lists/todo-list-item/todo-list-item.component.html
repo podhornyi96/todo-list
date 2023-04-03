@@ -1,5 +1,6 @@
 <div class="task" [ngClass]="{'done': item.isCompleted}">
   <div class="description">
+    <input type="checkbox" [(ngModel)]="item.isCompleted" (ngModelChange)="updateItem()"/>
     <input class="input" [(ngModel)]="item.description" [readonly]="item.isCompleted"
            (ngModelChange)="itemEdited = true"/>
   </div>
