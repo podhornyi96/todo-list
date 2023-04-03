@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  db:
+    image: mcr.microsoft.com/azure-sql-edge
+    restart: always
+    environment:
+      MSSQL_USER: "SA"
+      MSSQL_PID: "Developer"
+      SA_PASSWORD: "Qwerty123!"
+      ACCEPT_EULA: "1"
+    ports:
+      - "1433:1433"
+    volumes:
+      - dbdata:/var/opt/mssql
+  webapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      ConnectionStrings__DbContext: "Server=db;Database=todoDb;User Id=sa;Password=Qwerty123!;TrustServerCertificate=true"
+    depends_on:
+      - db
+volumes:
+  dbdata:
