@@ -1,6 +1,8 @@
 <div class="task" [ngClass]="{'done': item.isCompleted}">
   <div class="description">
-    <input class="input" [(ngModel)]="item.description" [readonly]="item.isCompleted"/>
+    <input class="input" [(ngModel)]="item.description" [readonly]="item.isCompleted"
+           (ngModelChange)="itemEdited = true"/>
   </div>
-  <span (click)="deleteItem($event)" class="del">Delete</span>
+  <span *ngIf="!itemEdited" (click)="deleteItem()" class="del">Delete</span>
+  <span *ngIf="itemEdited" (click)="updateItem()" class="edit">Update</span>
 </div>

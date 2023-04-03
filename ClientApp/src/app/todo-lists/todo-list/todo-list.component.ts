@@ -32,7 +32,6 @@ export class TodoListComponent {
   }
 
   onItemDeleted(item: TodoListItemModel) {
-    debugger
     this.todoListService.deleteListItem(this.todoList.id!, item.id!).subscribe(x => {
       this.todoList.todoListItems?.splice(this.todoList.todoListItems?.indexOf(item), 1);
     });

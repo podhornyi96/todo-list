@@ -35,4 +35,12 @@ public class TodoListController : Controller
         return Ok();
     }
     
+    [HttpPut("{todoListId}/todolistitem/{id}")]
+    public async Task<ActionResult> UpdateListItem(TodoListItemDto dto)
+    {
+        await _todoListService.UpdateTodoListItem(dto);
+        
+        return Ok();
+    }
+    
 }

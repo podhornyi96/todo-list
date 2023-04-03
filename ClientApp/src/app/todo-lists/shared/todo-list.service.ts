@@ -24,4 +24,8 @@ export class TodoListService {
     return this.http.delete(`${environment.apiUrl}/todolist/${todoListId}/todolistitem/${id}`);
   }
 
+  updateListItem(model: TodoListItemModel) {
+    return this.http.put(`${environment.apiUrl}/todolist/${model.todoListId}/todolistitem/${model.id}`, model);
+  }
+
 }

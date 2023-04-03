@@ -4,7 +4,8 @@
     <input (click)="addListItem(item.value)" type="submit" class="add" value="Add Task" />
   </div>
   <div *ngFor="let todoListItem of todoList.todoListItems" class="tasks">
-    <app-todo-list-item [item]="todoListItem" (itemDeleted)="onItemDeleted($event)"></app-todo-list-item>
+    <app-todo-list-item [item]="todoListItem"
+                        (itemDeleted)="onItemDeleted($event)"></app-todo-list-item>
   </div>
 <!--  <div class="delete-all">Delete all</div>-->
 </div>

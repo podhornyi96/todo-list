@@ -67,5 +67,16 @@ public class TodoListService : ITodoListService
         
         await _cache.RemoveAsync($"{RedisCacheKeys.TodoList}:{todoListId}");
     }
+
+    public async Task UpdateTodoListItem(TodoListItemDto dto)
+    {
+        var result = _mapper.Map<TodoListItem>(dto);
+
+        _context.Update(result);
+
+        await _context.SaveChangesAsync();
+        
+        await _cache.RemoveAsync($"{RedisCacheKeys.TodoList}:{dto.TodoListId.ToString()}");
+    }
     
 }
