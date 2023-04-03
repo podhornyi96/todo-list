@@ -34,46 +34,7 @@
   border-radius: 6px;
   padding: 20px;
 
-  .task {
-    background-color: white;
-    padding: 10px;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.3s;
-    cursor: pointer;
-    border: 1px solid #ccc;
-  }
 
-  .task:not(:last-child) {
-    margin-bottom: 15px;
-  }
-
-  .task:hover {
-    background-color: #f7f7f7;
-  }
-
-  .task {
-    &.done {
-      opacity: 0.5;
-      position: relative;
-    }
-    &.done::after {
-      position: absolute;
-      content: "";
-    }
-  }
-
-  .task span {
-    font-weight: bold;
-    font-size: 10px;
-    background-color: red;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
 }
 
 .delete-all {

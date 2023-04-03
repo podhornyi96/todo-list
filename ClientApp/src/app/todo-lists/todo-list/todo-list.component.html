@@ -3,8 +3,8 @@
     <input type="text" class="input" />
     <input type="submit" class="add" value="Add Task" />
   </div>
-  <div class="tasks">
-    <app-todo-list-item></app-todo-list-item>
+  <div *ngFor="let todoListItem of todoList.items" class="tasks">
+    <app-todo-list-item [item]="todoListItem"></app-todo-list-item>
   </div>
   <div class="delete-all">Delete all</div>
 </div>

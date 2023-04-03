@@ -9,6 +9,6 @@ import {TodoListModel} from "../shared/todo-list.model";
 })
 export class TodoListComponent {
 
-  // @Input() todoList: TodoListModel;
+  @Input() todoList: TodoListModel;
 
 }
